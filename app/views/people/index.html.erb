@@ -1,0 +1,23 @@
+<!-- app/views/people/index.html.erb -->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Locations</th>
+      <th>Affiliations</th>
+      <th>Weapon</th>
+      <th>Vehicle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= "#{person.first_name} #{person.last_name}" %></td>
+        <td><%= person.locations.pluck(:name).join(', ') %></td>
+        <td><%= person.affiliations.pluck(:name).join(', ') %></td>
+        <td><%= person.weapon %></td>
+        <td><%= person.vehicle %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
