@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_18_121439) do
+ActiveRecord::Schema.define(version: 2023_07_20_151843) do
 
   create_table "affiliations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "affiliations_people", force: :cascade do |t|
+    t.integer "affiliation_id"
+    t.integer "person_id"
+    t.index ["affiliation_id"], name: "index_affiliations_people_on_affiliation_id"
+    t.index ["person_id"], name: "index_affiliations_people_on_person_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -24,11 +31,20 @@ ActiveRecord::Schema.define(version: 2023_07_18_121439) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations_people", id: false, force: :cascade do |t|
+    t.integer "location_id", null: false
+    t.integer "person_id", null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "weapon"
+    t.string "vehicle"
+    t.string "species"
+    t.string "gender"
   end
 
 end

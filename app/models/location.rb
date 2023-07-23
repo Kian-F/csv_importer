@@ -3,3 +3,4 @@ class Location < ApplicationRecord
 
   validates :name, presence: true
 end
+# uniqueness: { case_sensitive: false }
