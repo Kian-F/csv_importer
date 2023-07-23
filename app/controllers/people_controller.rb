@@ -27,7 +27,7 @@ class PeopleController < ApplicationController
       @people = @people.joins(:locations).where(location_conditions, *location_names.map { |name| "%#{name}%" })
     end
 
-    # Filter by Species
+    # Species
     if params[:species].present?
       species_names = params[:species].split(',')
       @people = @people.where(species: species_names)
@@ -85,7 +85,7 @@ class PeopleController < ApplicationController
           if person_data[:locations].present?
             person_data[:locations].each do |location_name|
               location = Location.find_or_create_by(name: location_name.strip)
-              person.locations << location  # Associate location with the person
+              person.locations << location
             end
           end
 
